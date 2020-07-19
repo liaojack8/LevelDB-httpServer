@@ -47,7 +47,9 @@ curl -X POST 'http://127.0.0.1:8888/put' -H "Content-Type: application/json" -d 
 ```
 ```
 Output:
-        {"status": "OK"}
+        {
+        "status": "OK"
+        }
 ```
 * get
 ```
@@ -55,7 +57,10 @@ curl -X GET 'http://127.0.0.1:8888/get' -H "Content-Type: application/json" -d '
 ```
 ```
 Output:
-        {"status": "OK", "data": "(A, Airplane)"}
+        {
+        "data": "(A, Airplane)",
+        "status": "OK"
+        }
 ```
 * delete
 ```
@@ -63,7 +68,9 @@ curl -X POST 'http://127.0.0.1:8888/delete' -H "Content-Type: application/json" 
 ```
 ```
 Output:
-        {"status": "OK"}
+        {
+        "status": "OK"
+        }
 ```
 * query & queryall
   
@@ -87,21 +94,27 @@ curl -X GET 'http://127.0.0.1:8888/queryall'
 ```
 Output: 
         {
-            "status": "OK",
-            "data": [
-                "(A1,Airplane1)",
-                "(A2,Airplane2)",
-                "(A3,Airplane3)",
-                "(A4,Airplane4)",
-                "(k1,foo1)",
-                "(k2,foo2)"
-                ]
-            }
+        "data": [
+        "(A1, Airplane1)",
+        "(A2, Airplane2)",
+        "(A3, Airplane3)",
+        "(A4, Airplane4)",
+        "(k1, foo1)",
+        "(k2, foo2)"
+        ],
+        "status": "OK"
+        }
 ```
 ```
 curl -X GET 'http://127.0.0.1:8888/query' -H "Content-Type: application/json" -d '{"key" : "k"}'
 ```
 ```
 Output: 
-        {"status": "OK", "data": ["(k1, foo1)", "(k2, foo2)"]}
+        {
+        "data": [
+        "(k1,foo1)",
+        "(k2,foo2)"
+        ],
+        "status": "OK"
+        }
 ```
