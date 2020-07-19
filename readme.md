@@ -114,3 +114,18 @@ Output:
         "status": "OK"
         }
 ```
+```
+curl -X GET 'http://127.0.0.1:8888/query' -H "Content-Type: application/json" -d '{"key" : "A"}'
+```
+```
+Output: 
+        {
+        "data": [
+        "(A1, Airplane1)",
+        "(A2, Airplane2)",
+        "(A3, Airplane3)",
+        "(A4, Airplane4)"
+        ],
+        "status": "OK"
+        }
+```
