@@ -19,31 +19,22 @@ python3 server.py
 http request body format: json
 * /put
   
-        ```
+
         {"key" : "<key>", "value" : "<value>"}
-        ```
 * /get
 
-        ```
         {"key" : "<key>"}
-        ```
 * /delete
   
-        ```
         {"key" : "<key>"}
-        ```
 * /query
 
     The key used here will be prefix to query data.
 
-        ```
         {"key" : "<key>"}
-        ```
 * /queryall
 
-        ```
         None
-        ```
 
 ## Example
 * put
