@@ -30,7 +30,7 @@ def get():
 	db.close()
 	r_data = {
 		'status': 'OK',
-		'data': '(' + data['key'] + ',' + r.decode() + ')'
+		'data': '(' + data['key'] + ', ' + r.decode() + ')'
 		}
 	return Response(json.dumps(r_data), status=200)
 
@@ -51,7 +51,7 @@ def queryall():
 	db = plyvel.DB('./dbs/'+dbName, create_if_missing=True)
 	r = []
 	for k,v in db:
-		r.append('(' + k.decode() + ',' + v.decode() + ')')
+		r.append('(' + k.decode() + ', ' + v.decode() + ')')
 	db.close()
 	r_data = {
 		'status': 'OK',
