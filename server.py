@@ -12,9 +12,10 @@ parser.add_argument('-port', type=str, default = '8888')
 
 @app.route('/put', methods=['POST'])
 def put():
-	data = json.loads(request.get_data().decode())
+	reqKey = request.args.get('key')
+	reqValue = request.args.get('value')
 	db = plyvel.DB('./dbs/'+dbName, create_if_missing=True)
-	r = db.put(bytes(data['key'], 'ascii'), bytes(data['value'], 'ascii'))
+	r = db.put(bytes(reqKey, 'ascii'), bytes(reqValue, 'ascii'))
 	db.close()
 	if r == None:
 		r_data = {
@@ -24,21 +25,21 @@ def put():
 
 @app.route('/get', methods=['GET'])
 def get():
-	data = json.loads(request.get_data().decode())
+	reqKey = request.args.get('key')
 	db = plyvel.DB('./dbs/'+dbName, create_if_missing=True)
-	r = db.get(bytes(data['key'], 'ascii'))
+	r = db.get(bytes(reqKey, 'ascii'))
 	db.close()
 	r_data = {
 		'status': 'OK',
-		'data': '(' + data['key'] + ', ' + r.decode() + ')'
+		'data': '(' + reqKey + ', ' + r.decode() + ')'
 		}
 	return jsonify(r_data)
 
 @app.route('/delete', methods=['POST'])
 def delete():
-	data = json.loads(request.get_data().decode())
+	reqKey = request.args.get('key')
 	db = plyvel.DB('./dbs/'+dbName, create_if_missing=True)
-	r = db.delete(bytes(data['key'], 'ascii'))
+	r = db.delete(bytes(reqKey, 'ascii'))
 	db.close()
 	if r == None:
 		r_data = {
@@ -61,10 +62,10 @@ def queryall():
 
 @app.route('/query', methods=['GET'])
 def query():
-	data = json.loads(request.get_data().decode())
+	reqKey = request.args.get('key')
 	db = plyvel.DB('./dbs/'+dbName, create_if_missing=True)
 	r = []
-	for k,v in db.iterator(prefix=bytes(data['key'], 'ascii')):
+	for k,v in db.iterator(prefix=bytes(reqKey, 'ascii')):
 		r.append('(' + k.decode() + ',' + v.decode() + ')')
 	db.close()
 	r_data = {

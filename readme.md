@@ -39,7 +39,7 @@ http request body format: json
 ## Example
 * put
 ```
-curl -X POST 'http://127.0.0.1:8888/put' -H "Content-Type: application/json" -d '{"key" : "A", "value" : "Airplane"}'
+curl -X POST 'http://127.0.0.1:8888/put?key=A&value=Airplane'
 ```
 ```
 Output:
@@ -49,7 +49,7 @@ Output:
 ```
 * get
 ```
-curl -X GET 'http://127.0.0.1:8888/get' -H "Content-Type: application/json" -d '{"key" : "A"}'
+curl -X GET 'http://127.0.0.1:8888/get?key=A'
 ```
 ```
 Output:
@@ -60,7 +60,7 @@ Output:
 ```
 * delete
 ```
-curl -X POST 'http://127.0.0.1:8888/delete' -H "Content-Type: application/json" -d '{"key" : "A"}'
+        curl -X POST 'http://127.0.0.1:8888/delete?key=A'
 ```
 ```
 Output:
@@ -71,13 +71,13 @@ Output:
 * query & queryall
   
 ```
-curl -X POST 'http://127.0.0.1:8888/put' -H "Content-Type: application/json" -d '{"key" : "k1", "value" : "foo1"}'
-curl -X POST 'http://127.0.0.1:8888/put' -H "Content-Type: application/json" -d '{"key" : "k2", "value" : "foo2"}'
+curl -X POST 'http://127.0.0.1:8888/put?key=k1&value=foo1'
+curl -X POST 'http://127.0.0.1:8888/put?key=k2&value=foo2'
 
-curl -X POST 'http://127.0.0.1:8888/put' -H "Content-Type: application/json" -d '{"key" : "A1", "value" : "Airplane1"}'
-curl -X POST 'http://127.0.0.1:8888/put' -H "Content-Type: application/json" -d '{"key" : "A2", "value" : "Airplane2"}'
-curl -X POST 'http://127.0.0.1:8888/put' -H "Content-Type: application/json" -d '{"key" : "A3", "value" : "Airplane3"}'
-curl -X POST 'http://127.0.0.1:8888/put' -H "Content-Type: application/json" -d '{"key" : "A4", "value" : "Airplane4"}'
+curl -X POST 'http://127.0.0.1:8888/put?key=A1&value=Airplane1'
+curl -X POST 'http://127.0.0.1:8888/put?key=A2&value=Airplane2'
+curl -X POST 'http://127.0.0.1:8888/put?key=A3&value=Airplane3'
+curl -X POST 'http://127.0.0.1:8888/put?key=A4&value=Airplane4'
 ```
 
 ```
@@ -102,7 +102,7 @@ Output:
         }
 ```
 ```
-curl -X GET 'http://127.0.0.1:8888/query' -H "Content-Type: application/json" -d '{"key" : "k"}'
+curl -X GET 'http://127.0.0.1:8888/query?key=K'
 ```
 ```
 Output: 
@@ -115,7 +115,7 @@ Output:
         }
 ```
 ```
-curl -X GET 'http://127.0.0.1:8888/query' -H "Content-Type: application/json" -d '{"key" : "A"}'
+curl -X GET 'http://127.0.0.1:8888/query?key=A'
 ```
 ```
 Output: 
