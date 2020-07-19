@@ -18,20 +18,20 @@ python3 server.py
 ## API endpoints & request body:
 http request body format: json
 * /put
-  
 
-        {"key" : "<key>", "value" : "<value>"}
+        key=<key>
+        value=<value>
 * /get
 
-        {"key" : "<key>"}
+        key=<key>
 * /delete
   
-        {"key" : "<key>"}
+        key=<key>
 * /query
 
     The key used here will be prefix to query data.
 
-        {"key" : "<key>"}
+        key=<key>
 * /queryall
 
         None
