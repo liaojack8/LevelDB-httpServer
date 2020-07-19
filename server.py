@@ -3,7 +3,7 @@
 import os, argparse
 import json
 import plyvel
-from flask import Flask, request, Response
+from flask import Flask, request, Response, jsonify
 app = Flask(__name__)
 dbName = ''
 parser = argparse.ArgumentParser()
@@ -20,7 +20,7 @@ def put():
 		r_data = {
 		'status': 'OK'
 		}
-		return Response(json.dumps(r_data), status=200)
+		return jsonify(r_data)
 
 @app.route('/get', methods=['GET'])
 def get():
@@ -32,7 +32,7 @@ def get():
 		'status': 'OK',
 		'data': '(' + data['key'] + ', ' + r.decode() + ')'
 		}
-	return Response(json.dumps(r_data), status=200)
+	return jsonify(r_data)
 
 @app.route('/delete', methods=['POST'])
 def delete():
@@ -44,7 +44,7 @@ def delete():
 		r_data = {
 		'status': 'OK'
 		}
-		return Response(json.dumps(r_data), status=200)
+		return jsonify(r_data)
 
 @app.route('/queryall', methods=['GET'])
 def queryall():
@@ -57,7 +57,7 @@ def queryall():
 		'status': 'OK',
 		'data': r
 		}
-	return Response(json.dumps(r_data), status=200)
+	return jsonify(r_data)
 
 @app.route('/query', methods=['GET'])
 def query():
@@ -71,7 +71,7 @@ def query():
 		'status': 'OK',
 		'data': r
 		}
-	return Response(json.dumps(r_data), status=200)
+	return jsonify(r_data)
 
 
 if __name__ =='__main__':
