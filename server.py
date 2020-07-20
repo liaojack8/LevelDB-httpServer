@@ -19,7 +19,8 @@ def put():
 	db.close()
 	if r == None:
 		r_data = {
-		'status': 'OK'
+		'status_txt': 'OK',
+		'status_code': 200
 		}
 		return jsonify(r_data)
 
@@ -29,11 +30,18 @@ def get():
 	db = plyvel.DB('./dbs/'+dbName, create_if_missing=True)
 	r = db.get(bytes(reqKey, 'ascii'))
 	db.close()
-	r_data = {
-		'status': 'OK',
-		'data': '(' + reqKey + ', ' + r.decode() + ')'
+	if r == None:
+		return Response(
+			'{ "status_txt": "NOT_FOUND", "status_code": 404, "data": "" }',
+		status=404
+		)
+	else:
+		r_data = {
+		'data': r.decode(),
+		'status_txt': 'OK',
+		'status_code': 200
 		}
-	return jsonify(r_data)
+		return jsonify(r_data)
 
 @app.route('/delete', methods=['POST'])
 def delete():
@@ -43,7 +51,8 @@ def delete():
 	db.close()
 	if r == None:
 		r_data = {
-		'status': 'OK'
+		'status_txt': 'OK',
+		'status_code': 200
 		}
 		return jsonify(r_data)
 
@@ -55,7 +64,8 @@ def queryall():
 		r.append('(' + k.decode() + ', ' + v.decode() + ')')
 	db.close()
 	r_data = {
-		'status': 'OK',
+		'status_txt': 'OK',
+		'status_code': 200,
 		'data': r
 		}
 	return jsonify(r_data)
@@ -69,14 +79,14 @@ def query():
 		r.append('(' + k.decode() + ',' + v.decode() + ')')
 	db.close()
 	r_data = {
-		'status': 'OK',
+		'status_txt': 'OK',
+		'status_code': 200,
 		'data': r
 		}
 	return jsonify(r_data)
 
 
 if __name__ =='__main__':
-	global dbName
 	args = parser.parse_args()
 	dbName = args.db
-	app.run(host='0.0.0.0', debug=True, port=int(args.port))
+	app.run(host='0.0.0.0', port=int(args.port))
