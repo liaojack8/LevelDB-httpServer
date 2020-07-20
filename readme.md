@@ -48,7 +48,9 @@ curl -X POST 'http://127.0.0.1:8888/put?key=A&value=Airplane'
 ```
 Output:
         {
-        "status": "OK"
+        "status_txt": "OK",
+        "status_code": 200,
+        "data": ""
         }
 ```
 * get
@@ -58,8 +60,9 @@ curl -X GET 'http://127.0.0.1:8888/get?key=A'
 ```
 Output:
         {
-        "data": "(A, Airplane)",
-        "status": "OK"
+        "status_txt": "OK",
+        "status_code": 200,
+        "data": "Airplane"
         }
 ```
 * delete
@@ -69,7 +72,9 @@ Output:
 ```
 Output:
         {
-        "status": "OK"
+        "status_txt": "OK",
+        "status_code": 200,
+        "data": ""
         }
 ```
 * query & queryall
