@@ -5,6 +5,10 @@ RESTful API server based on leveldb storage engine
 
 Try to be compatible with YCSB (maybe not fully).
 
+* 2020-08-25
+
+Add `shutdown` API endpoint to close db completely.
+
 ## Building
 ```
 pip install -r requirements.txt
@@ -16,11 +20,10 @@ python3 server.py
     -db <str>       name of path to save leveldb file.
                     default: testdb
     -port <int>     the port which api using.
-                    default: 8888
+                    default: 8080
 ```
 
 ## API endpoints & request body:
-http request body format: json
 * /put
 
         key=<key>
@@ -39,11 +42,14 @@ http request body format: json
 * /queryall
 
         None
+* /shutdown
+
+        None
 
 ## Example
 * put
 ```
-curl -X POST 'http://127.0.0.1:8888/put?key=A&value=Airplane'
+curl -X POST 'http://127.0.0.1:8080/put?key=A&value=Airplane'
 ```
 ```
 Output:
@@ -55,7 +61,7 @@ Output:
 ```
 * get
 ```
-curl -X GET 'http://127.0.0.1:8888/get?key=A'
+curl -X GET 'http://127.0.0.1:8080/get?key=A'
 ```
 ```
 Output:
@@ -67,7 +73,7 @@ Output:
 ```
 * delete
 ```
-        curl -X POST 'http://127.0.0.1:8888/delete?key=A'
+        curl -X POST 'http://127.0.0.1:8080/delete?key=A'
 ```
 ```
 Output:
@@ -80,13 +86,13 @@ Output:
 * query & queryall
   
 ```
-curl -X POST 'http://127.0.0.1:8888/put?key=k1&value=foo1'
-curl -X POST 'http://127.0.0.1:8888/put?key=k2&value=foo2'
+curl -X POST 'http://127.0.0.1:8080/put?key=k1&value=foo1'
+curl -X POST 'http://127.0.0.1:8080/put?key=k2&value=foo2'
 
-curl -X POST 'http://127.0.0.1:8888/put?key=A1&value=Airplane1'
-curl -X POST 'http://127.0.0.1:8888/put?key=A2&value=Airplane2'
-curl -X POST 'http://127.0.0.1:8888/put?key=A3&value=Airplane3'
-curl -X POST 'http://127.0.0.1:8888/put?key=A4&value=Airplane4'
+curl -X POST 'http://127.0.0.1:8080/put?key=A1&value=Airplane1'
+curl -X POST 'http://127.0.0.1:8080/put?key=A2&value=Airplane2'
+curl -X POST 'http://127.0.0.1:8080/put?key=A3&value=Airplane3'
+curl -X POST 'http://127.0.0.1:8080/put?key=A4&value=Airplane4'
 ```
 
 ```
@@ -94,7 +100,7 @@ Output: Omit
 ```
 
 ```
-curl -X GET 'http://127.0.0.1:8888/queryall'
+curl -X GET 'http://127.0.0.1:8080/queryall'
 ```
 ```
 Output: 
@@ -111,7 +117,7 @@ Output:
         }
 ```
 ```
-curl -X GET 'http://127.0.0.1:8888/query?key=K'
+curl -X GET 'http://127.0.0.1:8080/query?key=K'
 ```
 ```
 Output: 
@@ -124,7 +130,7 @@ Output:
         }
 ```
 ```
-curl -X GET 'http://127.0.0.1:8888/query?key=A'
+curl -X GET 'http://127.0.0.1:8080/query?key=A'
 ```
 ```
 Output: 
@@ -137,4 +143,11 @@ Output:
         ],
         "status": "OK"
         }
+```
+```
+curl -X POST 'http://127.0.0.1:8080/shutdown'
+```
+```
+Output: 
+        Server shutting down...
 ```
