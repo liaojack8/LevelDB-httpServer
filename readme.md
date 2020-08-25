@@ -1,5 +1,5 @@
 # LevelDB-httpServer
-RESTful API server based on leveldb storage engine
+A RESTful API server supports YCSB, and based on leveldb storage engine.
 ## Changelog
 * 2020-07-20
 
