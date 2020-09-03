@@ -1,13 +1,17 @@
 # LevelDB-httpServer
 A RESTful API server supports YCSB, and based on leveldb storage engine.
 ## Changelog
-* 2020-07-20
+* 2020-09-03
 
-Try to be compatible with YCSB (maybe not fully).
+Add `getProperty` API endpoint to close db completely.
 
 * 2020-08-25
 
 Add `shutdown` API endpoint to close db completely.
+
+* 2020-07-20
+
+Try to be compatible with YCSB (maybe not fully).
 
 ## Building
 ```
@@ -45,6 +49,9 @@ python3 server.py
 * /shutdown
 
         None
+* /getProperty
+
+        name=<property name>
 
 ## Example
 * put
@@ -150,4 +157,17 @@ curl -X POST 'http://127.0.0.1:8080/shutdown'
 ```
 Output: 
         Server shutting down...
+```
+```
+curl -X POST 'http://127.0.0.1:8080/getProperty?name=leveldb.stats'
+```
+```
+Output: 
+        Compactions
+        Level | Tables | Size(MB) | Time(sec) | Read(MB) | Write(MB)
+        ------+--------+----------+-----------+----------+----------
+        0 | 0 | 0.00000 | 1.5889 | 0.00000 | 9.32476
+        1 | 75 | 100.20348 | 26.92093 | 231.49293 | 224.07294
+
+        <property value or None return from DB::GetProperty()>
 ```
