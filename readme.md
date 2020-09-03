@@ -55,8 +55,8 @@ python3 server.py
 
 ## Example
 * put
-```
-curl -X POST 'http://127.0.0.1:8080/put?key=A&value=Airplane'
+```bash
+$ curl -X POST 'http://127.0.0.1:8080/put?key=A&value=Airplane'
 ```
 ```
 Output:
@@ -67,8 +67,8 @@ Output:
         }
 ```
 * get
-```
-curl -X GET 'http://127.0.0.1:8080/get?key=A'
+```bash
+$ curl -X GET 'http://127.0.0.1:8080/get?key=A'
 ```
 ```
 Output:
@@ -79,10 +79,10 @@ Output:
         }
 ```
 * delete
+```bash
+$ curl -X POST 'http://127.0.0.1:8080/delete?key=A'
 ```
-        curl -X POST 'http://127.0.0.1:8080/delete?key=A'
-```
-```
+```bash
 Output:
         {
         "status_txt": "OK",
@@ -92,22 +92,22 @@ Output:
 ```
 * query & queryall
   
-```
-curl -X POST 'http://127.0.0.1:8080/put?key=k1&value=foo1'
-curl -X POST 'http://127.0.0.1:8080/put?key=k2&value=foo2'
+```bash
+$ curl -X POST 'http://127.0.0.1:8080/put?key=k1&value=foo1'
+$ curl -X POST 'http://127.0.0.1:8080/put?key=k2&value=foo2'
 
-curl -X POST 'http://127.0.0.1:8080/put?key=A1&value=Airplane1'
-curl -X POST 'http://127.0.0.1:8080/put?key=A2&value=Airplane2'
-curl -X POST 'http://127.0.0.1:8080/put?key=A3&value=Airplane3'
-curl -X POST 'http://127.0.0.1:8080/put?key=A4&value=Airplane4'
+$ curl -X POST 'http://127.0.0.1:8080/put?key=A1&value=Airplane1'
+$ curl -X POST 'http://127.0.0.1:8080/put?key=A2&value=Airplane2'
+$ curl -X POST 'http://127.0.0.1:8080/put?key=A3&value=Airplane3'
+$ curl -X POST 'http://127.0.0.1:8080/put?key=A4&value=Airplane4'
 ```
 
 ```
 Output: Omit
 ```
 
-```
-curl -X GET 'http://127.0.0.1:8080/queryall'
+```bash
+$ curl -X GET 'http://127.0.0.1:8080/queryall'
 ```
 ```
 Output: 
@@ -123,8 +123,8 @@ Output:
         "status": "OK"
         }
 ```
-```
-curl -X GET 'http://127.0.0.1:8080/query?key=K'
+```bash
+$ curl -X GET 'http://127.0.0.1:8080/query?key=K'
 ```
 ```
 Output: 
@@ -136,8 +136,8 @@ Output:
         "status": "OK"
         }
 ```
-```
-curl -X GET 'http://127.0.0.1:8080/query?key=A'
+```bash
+$ curl -X GET 'http://127.0.0.1:8080/query?key=A'
 ```
 ```
 Output: 
@@ -151,15 +151,15 @@ Output:
         "status": "OK"
         }
 ```
-```
-curl -X POST 'http://127.0.0.1:8080/shutdown'
+```bash
+$ curl -X POST 'http://127.0.0.1:8080/shutdown'
 ```
 ```
 Output: 
         Server shutting down...
 ```
-```
-curl -X POST 'http://127.0.0.1:8080/getProperty?name=leveldb.stats'
+```bash
+$ curl -X POST 'http://127.0.0.1:8080/getProperty?name=leveldb.stats'
 ```
 ```
 Output: 
