@@ -19,6 +19,12 @@ pip install -r requirements.txt
 python3 server.py
 ```
 
+## Run in docker
+```
+docker build -t leveldb-httpserver .
+docker run -d -v /path/to/database:/home/LevelDB-httpServer/dbs leveldb-httpserver -db .
+```
+
 ## Options
 ```
     -db <str>       name of path to save leveldb file.
